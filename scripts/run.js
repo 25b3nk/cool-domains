@@ -10,6 +10,20 @@ const main = async () => {
     let txn = await domainContract.register("a16z", { value: hre.ethers.utils.parseEther('1234') });
     await txn.wait();
 
+    // Get record
+    const recor = await domainContract.getRecord("a16z");
+    console.log("Record: ", recor)
+
+    // Set record
+    txn = await domainContract.setRecord("a16z", "Testing 1 2 3...");
+    await txn.wait();
+
+    // Get record and address
+    const record = await domainContract.getRecord("a16z");
+    console.log("Record: ", record)
+    const add = await domainContract.getAddress("a16z");
+    console.log("Address: ", add)
+
     // How much money is in here?
     const balance = await hre.ethers.provider.getBalance(domainContract.address);
     console.log("Contract balance:", hre.ethers.utils.formatEther(balance));

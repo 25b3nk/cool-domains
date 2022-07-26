@@ -125,7 +125,7 @@ contract Domains is ERC721URIStorage {
         // console.log(
         //     "\n--------------------------------------------------------"
         // );
-        console.log("Final tokenURI", finalTokenUri);
+        // console.log("Final tokenURI", finalTokenUri);
         // console.log(
         //     "--------------------------------------------------------\n"
         // );
@@ -147,7 +147,7 @@ contract Domains is ERC721URIStorage {
     }
 
     function setRecord(string calldata name, string calldata record) public {
-        if (domains[name] == msg.sender) revert Unauthorized();
+        if (domains[name] != msg.sender) revert Unauthorized();
         records[name] = record;
     }
 
